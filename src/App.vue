@@ -49,7 +49,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="w-screen h-screen relative">
+  <div class="w-screen h-screen relative bg-white">
     <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-fit">
       <div class="w-full text-center flex flex-col space-y-5">
         <h1 class="md:text-5xl text-3xl font-bold">#TheLightneer</h1>
