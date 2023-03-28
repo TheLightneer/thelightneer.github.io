@@ -50,10 +50,10 @@ onBeforeMount(() => {
 
 <template>
   <div class="w-screen h-screen relative bg-white">
-    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-fit">
+    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:w-2/5 w-4/5">
       <div class="w-full text-center flex flex-col space-y-5">
         <h1 class="md:text-5xl text-3xl font-bold">#TheLightneer</h1>
-        <h3 class="md:text-3xl text-xl w-full" v-if="dict.time && time_parsed">
+        <h3 class="md:text-xl text-xl w-full" v-if="dict.time && time_parsed">
           {{ dict.time[0].fields.Name }}：<br class="md:hidden" />{{ time_parsed }}
         </h3>
         <div class="border-b"></div>
@@ -68,8 +68,17 @@ onBeforeMount(() => {
           >
             <div class="text-3xl font-bold">#{{ index }}</div>
             <div class="md:text-left grow md:pr-5 pr-0">
+              <div
+                class="bg-gray-500 rounded-2xl w-fit py-1 px-3 text-sm text-white md:mx-0 mx-auto"
+                v-if="session.fields.Category"
+              >
+                {{ session.fields.Category }}
+              </div>
               <div class="text-lg font-semibold">{{ session.fields.Title }}</div>
-              <div class="text-sm font-extralight text-gray-500">
+              <div
+                class="text-sm font-extralight text-gray-500"
+                v-if="session.fields.Speaker"
+              >
                 delivered by {{ session.fields.Speaker }}
               </div>
             </div>
