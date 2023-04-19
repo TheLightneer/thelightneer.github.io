@@ -26,7 +26,7 @@ const axiosGet = (table) => {
 };
 
 const getData = () => {
-  axiosGet("Agenda?sort%5B0%5D%5Bfield%5D=Order&sort%5B0%5D%5Bdirection%5D=asc").then(
+  axiosGet("Agenda?sort%5B0%5D%5Bfield%5D=Order&sort%5B0%5D%5Bdirection%5D=asc&maxRecords=4").then(
     (result) => {
       dict.session = result;
       console.log(dict.session);
