@@ -26,16 +26,18 @@ const axiosGet = (table) => {
 };
 
 const getData = () => {
-  axiosGet("Agenda?sort%5B0%5D%5Bfield%5D=Order&sort%5B0%5D%5Bdirection%5D=asc&maxRecords=4").then(
-    (result) => {
-      dict.session = result;
-      console.log(dict.session);
-    }
-  );
+  axiosGet(
+    "Agenda?maxRecords=4&sort%5B0%5D%5Bfield%5D=Date&sort%5B0%5D%5Bdirection%5D=desc&sort%5B1%5D%5Bfield%5D=Order&sort%5B1%5D%5Bdirection%5D=asc"
+  ).then((result) => {
+    dict.session = result;
+    console.log(dict.session);
+  });
 };
 
 const getTimeData = () => {
-  axiosGet("Time").then((result) => {
+  axiosGet(
+    "Time?maxRecords=1&sort%5B0%5D%5Bfield%5D=Date&sort%5B0%5D%5Bdirection%5D=desc"
+  ).then((result) => {
     dict.time = result;
     time_parsed.value = new Date(result[0].fields.Date).toLocaleString();
     console.log(dict.time);
@@ -50,9 +52,16 @@ onBeforeMount(() => {
 
 <template>
   <div class="w-screen h-screen relative bg-white">
-    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:w-2/5 w-4/5">
+    <div
+      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:w-2/5 w-4/5"
+    >
       <div class="w-full text-center flex flex-col space-y-5">
-        <h1 class="md:text-5xl text-3xl font-bold">#TheLightneer</h1>
+        <h1 class="md:text-5xl text-3xl font-bold">
+          #TheLightneer
+          <a href="https://discord.gg/Dp83gD6AEQ">
+            <font-awesome-icon icon="fa-brands fa-discord" />
+          </a>
+        </h1>
         <h3 class="md:text-xl text-xl w-full" v-if="dict.time && time_parsed">
           {{ dict.time[0].fields.Name }}：<br class="md:hidden" />{{ time_parsed }}
         </h3>
